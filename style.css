@@ -1,0 +1,55 @@
+﻿body{
+	font-family:Play;
+	font-size: 18px;
+}
+header{
+	font-size: 36px;
+	text-align: center;
+	background-color: burlywood;
+}
+footer{
+	font-size:18px;
+	text-align: center;
+	background-color: crimson;
+	margin-bottom:0px;
+	padding-bottom:0px;
+}
+#values_div{
+	width: 100%;
+	padding: 10px;
+}
+#canvas_div{
+	width: 100%;
+}
+button{
+	margin: 5px;
+	width: 150px;
+	height: 40px;
+}
+input{
+	width: 50px;
+}
+canvas{
+	border:dashed;
+}
+#unif {
+	display:none;
+}
+#exp {
+	display: none;
+}
+#norm {
+	display: none;
+}
+#khi {
+	display: none;
+}
+#stu {
+	display: none;
+}
+#fish {
+	display: none;
+}
+.stat{
+	display:none;
+}
