@@ -47,6 +47,12 @@ class Statistic {
             return 2.575;
         }
     }
+    Corelation(x, y) {
+        return (this.Mean(this.SampleMultiply(x, y)) - this.Mean(x) * this.Mean(y)) / (this.Deviation(x) * this.Deviation(y));
+    }
+    Determination(x, y) {
+        return Math.pow(this.Corelation(x, y), 2);
+    }
 }
 class LinearRegression {
     constructor() { }
@@ -89,14 +95,21 @@ class LinearRegression {
         return stat.Z(quantile) * stat.Deviation(x) / Math.sqrt(x.length);
     }
     Main() {
+        var stat = new Statistic();
         Clearcanvas();
         let points = this.Points($('a').valueAsNumber);
         for (let i = 0; i < points[0].length; i++) {
             DrawPoint(50 * points[0][i], 500 - (5 * points[1][i]));
         }
         DrawLine(this.MSS(points)[0], this.MSS(points)[1]);
-        DrawLine(this.MSS(points)[0], this.MSS(points)[1] + this.Error(points[0]));
-        DrawLine(this.MSS(points)[0], this.MSS(points)[1] - this.Error(points[0]));
+        DrawPunctureLine(this.MSS(points)[0], this.MSS(points)[1] + this.Error(points[0]));
+        DrawPunctureLine(this.MSS(points)[0], this.MSS(points)[1] - this.Error(points[0]));
+        $('formulas').style.display = 'block';
+        $('alpha').innerHTML = ("α = "+this.MSS(points)[0]+"");
+        $('beta').innerHTML = ("β= " + this.MSS(points)[1] + "");
+        $('epsilon').innerHTML = ("ε= " + this.Error(points[0]));
+        $('corel').innerHTML = ("r(x, y)= " + stat.Corelation(points[0], points[1]));
+        $('determ').innerHTML = ("R^2= " + stat.Determination(points[0], points[1]));
     }
 }
 function DrawPoint(x, y) {
@@ -107,16 +120,29 @@ function DrawPoint(x, y) {
     context.strokeStyle = "#FF0000";
     context.stroke();
 }
-//function DrawPunctureLine
+function DrawPunctureLine(k, b) {
+    let context = $('canvas').getContext('2d');
+    context.beginPath();
+    context.moveTo(0, 500 - b * 5);
+    for (let i = 0; i <= 26; i += 0.5) {
+        if ((i - 0.5) % 1 == 0) {
+            context.lineTo(i*50, 500 - (k * i + b) * 5);
+            context.moveTo((i + 0.5)*50, 500 - (k * (i + 0.5) + b) * 5);
+        }
+    }
+    context.strokeStyle = "#0000FF";
+    context.stroke();
+}
 function DrawLine(k, b) {
     let context = $('canvas').getContext('2d');
     context.beginPath();
     context.moveTo(0, 500-b*5);
     context.lineTo(1300, 500-(k * 26 + b)*5);
-    context.strokeStyle = "#0000FF";
+    context.strokeStyle = "#10FF00";
     context.stroke();
 }
 function Clearcanvas() {
+    $('formulas').style.display = 'none';
     var canvas = document.getElementById('canvas');
     var c = canvas.getContext('2d');
     c.clearRect(0, 0, canvas.width, canvas.height);
