@@ -141,7 +141,7 @@ class LinearRegression {
         let ymean = st.Mean(points[1]);
         let exp = st.Expectation(points[0], points[1]);
         let squares = st.Expectation(points[0], points[0]);
-        let alpha = (points[0].length * exp - xmean * ymean) / (points[0].length *squares -  Math.pow(xmean, 2));
+        let alpha = (exp - points[0].length * xmean * ymean) / (squares - points[0].length *Math.pow(xmean, 2));
         let beta = ymean - alpha * xmean;
         return [alpha, beta];
     }
