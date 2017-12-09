@@ -15,43 +15,26 @@ footer{
 	padding-bottom:0px;
 }
 #values_div{
-	width: 100%;
-	padding: 10px;
+	width:49%;
+	display: inline-block;
 }
 #canvas_div{
 	width: 100%;
 }
+#formulas{
+	width:49%;
+	display: none;
+}
 button{
 	margin: 5px;
 	width: 150px;
-	height: 40px;
+	height: 35px;
 }
 input{
 	width: 50px;
 }
 canvas{
 	border:dashed;
-}
-#unif {
-	display:none;
-}
-#exp {
-	display: none;
-}
-#norm {
-	display: none;
-}
-#khi {
-	display: none;
-}
-#stu {
-	display: none;
-}
-#fish {
-	display: none;
-}
-.stat{
-	display:none;
 }
 .bred{
 	text-align:center;

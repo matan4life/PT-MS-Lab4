@@ -5,36 +5,41 @@
         <title>Lab4</title>
         <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
         <link href="style.css" rel="stylesheet" />
-        <style>
-            #formulas {
-                display: none;
-            }
-        </style>
     </head>
     <body>
         <header>
             <p class="header">Лабораторная №4. Регрессионный анализ</p>
         </header>
-        <div id = "values_div" align = "center">
-            Sample size : <input type="number" name="n" value="1" id="a" />
-            <select id="b">
-                <option>90%</option>
-                <option>95%</option>
-                <option>99%</option>
-            </select>
-            <br />
-            <button onclick="CreateRegress()">Колдуйся, колдуйся, прямая отрисуйся</button>
-            <button onclick="Clearcanvas()">Кручу, верчу, стереть хочу</button>
+        <div>
+	        <div id = "values_div" align="center" >
+	            Sample size : 
+	            <input type="number" name="n" value="10" id="a" min="5" />
+	            <select id="b">
+	                <option>90%</option>
+	                <option>95%</option>
+	                <option>99%</option>
+	            </select>
+    			<br />
+    			<button onclick="CreateRegress()">Колдуйся, колдуйся, прямая отрисуйся</button>
+    			<br />
+	            <button onclick="Clearcanvas()">Кручу, верчу, стереть хочу</button>
+	            <p>$${y}={βx+α±ε} - \text {уравнение прямой линейной регрессии}$$</p>
+	            <p id="test">$${r_{xy}} - \text {коэффициент кореляции}$$</p>
+	            <p>$${R^2=\sqrt{r_{xy}}} - \text {коэффициент детерминации}$$</p>
+                <p>$${R^2}=1-{SS_{res} \over SS_{tot}}, {SS_{res}}={\sum_{i=1}^n e_i^2}={\sum_{i=1}^n (y_i-\hat{y_i})^2}, {SS_{tot}}={\sum_{i=1}^n (y_i-\bar{y})^2}$$</p>
+	        </div>
+	        <div id="formulas" align="center">
+	            <p><b>Результаты</b></p>
+	            <p class="bred" id="alpha">β=</p>
+	            <p class="bred" id="beta">α=</p>
+	            <p class="bred" id="epsilon">ε=</p>
+	            <p class="bred" id="corel">r(x, y)=</p>
+	            <p class="bred" id="determ">R^2 (by corelation)</p>
+	        </div>
         </div>
-        <div id="formulas">
-            <p>$${y}={αx+β±ε} - \text {уравнение прямой линейной регрессии}$$</p>
-            <p>$${r_{xy}} - \text {коэффициент кореляции}$$</p>
-            <p>$${R^2} - \text {коэффициент детерминации}$$</p>
-            <p class="bred" id="alpha">α=</p>
-            <p class="bred" id="beta">β=</p>
-            <p class="bred" id="epsilon">ε=</p>
-            <p class="bred" id="corel">r(x, y)=</p>
-            <p class="bred" id="determ">R^2</p>
+        <div>
+            <p align="center" id="determination" style="display:none"></p>
+            <p align="center" id="remnants" style="display:none"></p>
         </div>
         <div id = "canvas_div" align = "center">
             <canvas id="canvas" width='1300' height="500"></canvas>
